@@ -1,0 +1,61 @@
+============================= AWS Lambda Student DEMO =======================
+================ deploy to lambda function java jar =======
+deploy as jar directly or zip 
+https://cb7lw7sb2g.execute-api.ap-south-1.amazonaws.com/dev
+
+acceeskey :  AKIA3POSCSNFPXIERYRX
+scret key : 9KqffOhTKVpE2SVyM5huwa5qgieD1wX3ltGdffUS
+
+https://AWS-account-ID or alias.signin.aws.amazon.com/console
+
+905418155955
+
+
+https://905418155955.signin.aws.amazon.com/console
+arn:aws:lambda:ap-south-1:905418155955:function:kloud4function
+
+============== Fix apigateway issue=========
+- enable to "Lambda proxy integration" = true in create method in method (PUT)
+- creating path param {createcustomer} in resource path in apigateway 
+Ex: https://qizgjzztj3.execute-api.ap-south-1.amazonaws.com/prod/{createcustomer}
+- do not select execute ARN while creating "Lambda proxy integration" option = true in Integration request
+
+https://ccahraqfoi.execute-api.ap-south-1.amazonaws.com/prod/{createcustomer}
+https://rmrky2onm5.execute-api.ap-south-1.amazonaws.com/prod/{fetchcustomer}?studentId=10001
+https://b3ythd8sb7.execute-api.ap-south-1.amazonaws.com/prod/{deletecustomer}?studentId=kloud4best
+
+=============================== Kloud4 AWS Lambda NodeJS Student Demo =====================================
+Install nodejs using gitbash
+https://nodejs.org/en/download/package-manager/#windows-1
+https://stackoverflow.com/questions/53975944/aws-lambda-getting-path-parameters-using-node-js
+Endpoint: myBucket.s3.<Region>.amazonaws.com
+mkdir node-aws-lambda-s3bucket
+cd node-aws-lambda-s3bucket
+npm init -y
+npm install aws-sdk
+npm install uuid
+
+https://docs.aws.amazon.com/lambda/latest/dg/nodejs-package.html#nodejs-package-create-dependencies
+http://stahlworks.com/dev/index.php?tool=zipunzip
+zip -r my_deployment_package.zip .
+
+=============== Issues S3 accessing url in browser--------
+---Upload only text file since image can only upload via UI on S3.
+- needs to include the below policies under S3 ->Bucketnae->permission tab-> then include
+{
+	"Version": "2012-10-17",
+	"Statement": [
+		{
+			"Sid": "VisualEditor0",
+			"Effect": "Allow",
+			 "Principal": "*",
+			"Action": [
+				"s3:PutObject",
+				"s3:PutObjectAcl",
+				"s3:GetObject",
+				"s3:DeleteObject"
+			],
+			"Resource": "arn:aws:s3:::kloud4-bucket/*"
+		}
+	]
+}
