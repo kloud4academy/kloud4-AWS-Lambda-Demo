@@ -59,3 +59,36 @@ zip -r my_deployment_package.zip .
 		}
 	]
 }
+https://kyals2mnu8.execute-api.ap-south-1.amazonaws.com/prod/{createstudentbucket}?keyId=pdfda
+
+
+
+===================== AWS Lambda Blue - Green Deployment using Lambda with AWS APIGateway=====================
+
+kloud4-dev-alias
+https://enlear.academy/blue-green-deployment-of-api-using-aws-lambda-and-api-gateway-6668fe73c5fe
+https://stackoverflow.com/questions/54011015/how-to-point-aws-api-gateway-stage-to-specific-lambda-function-alias
+kloud4-deployment
+- After creating lambda function, create 2 aliases for lambda function. dev pointing to $latest version and prod pointing a particular version you want to use in prod
+- Then goto API Gateway console ->Integration Request ->Lambda function, and type pets:${stageVariables.lambdaAlias} where pets is my function name and - - - lambdaAlias is the stage variable that we will have to add in each API stage
+- Deploy your API to new API stages development and production
+- In each API stage add stage variable lambdaAlias with value dev and prod respectively. The stage variable value must match with lambda function's alias
+
+- Run the below command in CLI
+https://docs.aws.amazon.com/lambda/latest/dg/urls-auth.html#urls-auth-iam
+
+aws lambda add-permission \
+    --function-name arn:aws:lambda:ap-south-1:905418155955:function:kloud4-blue-green-deployment:klou4-academy-prod \
+    --action lambda:InvokeFunction \
+    --statement-id kloud4academy12345 \
+    --principal apigateway.amazonaws.com
+
+
+https://c5vvforc8h.execute-api.ap-south-1.amazonaws.com/stage
+https://c5vvforc8h.execute-api.ap-south-1.amazonaws.com/prod
+
+klou4-academy-prod
+
+
+
+
